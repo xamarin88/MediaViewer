@@ -40,6 +40,15 @@ namespace MediaViewer {
         protected global::System.Web.UI.WebControls.Image imgView;
         
         /// <summary>
+        /// lblImgLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblImgLocation;
+        
+        /// <summary>
         /// ddlVideos control.
         /// </summary>
         /// <remarks>
@@ -56,5 +65,14 @@ namespace MediaViewer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlSource vdView;
+        
+        /// <summary>
+        /// lblVideoLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVideoLocation;
     }
 }
