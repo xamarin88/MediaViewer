@@ -80,6 +80,7 @@ namespace MediaViewer
 
                 if (latitude != null && longitude!= null)
                 {
+                    //RetrieveFormatedAddress(latitude, longitude, ref address);
                     RetrieveFormatedAddress(latitude, longitude, ref address);
                     lblImgLocation.Text = address;
                 }
@@ -159,11 +160,31 @@ namespace MediaViewer
 
             XmlNodeList xNodelst = xDoc.GetElementsByTagName("result");
             XmlNode xNode = xNodelst.Item(0);
-            address = xNode.SelectSingleNode("formatted_address").InnerText;
-            
+            if (xNode != null)
+            { 
+                address = xNode.SelectSingleNode("formatted_address").InnerText;
+            }
+            else
+            {
+                address = "ERROR: No address components located in XML.";
+            }
+
             //string mahalle = xNode.SelectSingleNode("address_component[3]/long_name").InnerText;
             //string ilce = xNode.SelectSingleNode("address_component[4]/long_name").InnerText;
             //string il = xNode.SelectSingleNode("address_component[5]/long_name").InnerText;
         }
+
+        //public static void RetrieveFormatedAddress2(string lat, string lng, ref string address)
+        //{
+        //    string requestUri = string.Format(baseUri, lat, lng);
+
+        //    WebRequest request = WebRequest.Create(requestUri);
+        //    WebResponse response = request.GetResponse();
+        //    XDocument xdoc = XDocument.Load(response.GetResponseStream());
+
+        //    XElement result = xdoc.Element("GeocodeResponse").Element("result");
+        //    XElement locationElement = result.Element("geometry").Element("location");
+           
+        //}
     }
 }
