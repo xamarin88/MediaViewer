@@ -25,13 +25,11 @@ namespace MediaViewer
             {
                 ddlImages.DataSource = GetData("SELECT imageId, filePath as filename FROM BlobStorage WHERE fileExt = 'jpg'");
                 ddlImages.DataTextField = "filename";
-                //ddlImages.DataValueField = "filename";
                 ddlImages.DataValueField = "imageId";
                 ddlImages.DataBind();
 
                 ddlVideos.DataSource = GetData("SELECT imageId, filePath as filename FROM BlobStorage WHERE fileExt = 'mp4'");
                 ddlVideos.DataTextField = "filename";
-                //ddlVideos.DataValueField = "filename";
                 ddlVideos.DataValueField = "imageId";
                 ddlVideos.DataBind();
             }
@@ -64,13 +62,11 @@ namespace MediaViewer
             lblImgLocation.Text = "";
             string id = ddlImages.SelectedItem.Value;
             DataTable dt = new DataTable();
-            dt = GetData("SELECT filePath, senderLat, senderLong FROM BlobStorage WHERE imageId =" + id);
+            dt = GetData("SELECT filePath, senderLat, senderLong FROM BlobStorage WHERE imageId =" + id + " order by imageId");
             string path = dt.Rows[0]["filePath"].ToString();
             latitude = dt.Rows[0]["senderLat"].ToString();
             longitude = dt.Rows[0]["senderLong"].ToString();
-
-            //string path = (GetData("SELECT filePath FROM BlobStorage WHERE imageId =" + id).Rows[0]["filePath"]).ToString();
-            //string path = ddlImages.SelectedItem.Value;
+           
             if (path != null)
             {
                 imgView.Visible = true;
@@ -80,7 +76,6 @@ namespace MediaViewer
 
                 if (latitude != null && longitude!= null)
                 {
-                    //RetrieveFormatedAddress(latitude, longitude, ref address);
                     RetrieveFormatedAddress(latitude, longitude, ref address);
                     lblImgLocation.Text = address;
                 }
@@ -113,12 +108,11 @@ namespace MediaViewer
             lblVideoLocation.Text = "";
             string id = ddlVideos.SelectedItem.Value;
             DataTable dt = new DataTable();
-            dt = GetData("SELECT filePath, senderLat, senderLong FROM BlobStorage WHERE imageId =" + id);
+            dt = GetData("SELECT filePath, senderLat, senderLong FROM BlobStorage WHERE imageId =" + id + " order by imageId");
             string path = dt.Rows[0]["filePath"].ToString();
             latitude = dt.Rows[0]["senderLat"].ToString();
             longitude = dt.Rows[0]["senderLong"].ToString();
 
-            //string path = ddlVideos.SelectedItem.Value;
             if (path != null)
             {
                 vdView.Visible = true;
@@ -137,19 +131,6 @@ namespace MediaViewer
                 }
             }
         }
-        
-        //protected void btnLocation_Click(object sender, EventArgs e)
-        //{
-        //    string latitude;
-        //    string longitude;
-        //    string address = "";
-            
-        //    latitude = "2.998422600";
-        //    longitude = "101.651268500";
-                        
-        //    RetrieveFormatedAddress(latitude, longitude, ref address);
-        //    lblLocation.Text = address;
-        //}
 
         public static void RetrieveFormatedAddress(string lat, string lng, ref string address)
         {
@@ -168,10 +149,6 @@ namespace MediaViewer
             {
                 address = "ERROR: No address components located in XML.";
             }
-
-            //string mahalle = xNode.SelectSingleNode("address_component[3]/long_name").InnerText;
-            //string ilce = xNode.SelectSingleNode("address_component[4]/long_name").InnerText;
-            //string il = xNode.SelectSingleNode("address_component[5]/long_name").InnerText;
         }
 
         //public static void RetrieveFormatedAddress2(string lat, string lng, ref string address)
@@ -184,7 +161,6 @@ namespace MediaViewer
 
         //    XElement result = xdoc.Element("GeocodeResponse").Element("result");
         //    XElement locationElement = result.Element("geometry").Element("location");
-           
         //}
     }
 }
