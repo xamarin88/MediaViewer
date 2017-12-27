@@ -19,6 +19,9 @@
             <br /><br />
             <asp:Image ID="imgView" runat="server" Height="393px" Visible="false" Width="490px" />
             <br /><br />
+
+            <a href="<%=ViewState["dllinkIMG"]%>" download>Download Image</a>
+
             <asp:Label ID="lblImgLocation" runat="server" Text=""></asp:Label>
             <br /><br />
             <hr />
@@ -35,6 +38,9 @@
                 <source type="video/mp4" id="vdView" runat="server" visible="false" Height="300px" Width="400px" />
             </video>
             <br /><br />
+
+            <a href="<%=ViewState["dllinkVD"]%>" download>Download Video</a>
+
             <asp:Label ID="lblVideoLocation" runat="server" Text=""></asp:Label>
         </div>
     </form>

@@ -21,6 +21,8 @@ namespace MediaViewer
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ViewState["dllinkIMG"] = "";
+            ViewState["dllinkVD"] = "";
             if (!this.IsPostBack)
             {
                 ddlImages.DataSource = GetData("SELECT imageId, filePath as filename FROM BlobStorage WHERE fileExt = 'jpg'");
@@ -66,7 +68,8 @@ namespace MediaViewer
             string path = dt.Rows[0]["filePath"].ToString();
             latitude = dt.Rows[0]["senderLat"].ToString();
             longitude = dt.Rows[0]["senderLong"].ToString();
-           
+            ViewState["dllinkIMG"] = dt.Rows[0]["filePath"].ToString();
+
             if (path != null)
             {
                 imgView.Visible = true;
@@ -112,6 +115,7 @@ namespace MediaViewer
             string path = dt.Rows[0]["filePath"].ToString();
             latitude = dt.Rows[0]["senderLat"].ToString();
             longitude = dt.Rows[0]["senderLong"].ToString();
+            ViewState["dllinkVD"] = dt.Rows[0]["filePath"].ToString();
 
             if (path != null)
             {
